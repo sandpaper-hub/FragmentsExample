@@ -1,22 +1,40 @@
 package com.practicum.fragmentsexample
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import com.practicum.fragmentsexample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if (savedInstanceState == null) {
             // в этот момент мы отображаем Fragment
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container_view, CitiesFragment())
+                .commit()
+        }
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener() {
+        binding.replaceCountryFragment.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, CountriesFragment())
+                .setReorderingAllowed(true)
+                .commit()
+        }
+
+        binding.replaceBackstackCountryFragment.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, CountriesFragment())
+                .addToBackStack("countries")
+                .setReorderingAllowed(true)
                 .commit()
         }
     }

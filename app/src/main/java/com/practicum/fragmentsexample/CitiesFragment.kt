@@ -10,10 +10,11 @@ import com.practicum.fragmentsexample.databinding.FragmentCitiesBinding
 //наш класс должен наследоваться от класса Fragment
 class CitiesFragment : Fragment() {
 
-    private val cities = "Yurevichi,Gumist’a,Ptitsefabrika,Orekhovo,Birim,Priiskovyy"
+    private val cities = "New York\nLos Angeles\nLondon\nTokyo\nParis\nSan Francisco"
 
     // используем ViewBinding, мы можем использовать его так же как и в Activity
     private var _binding: FragmentCitiesBinding? = null
+
     // создаём неизменяемую переменную, к которой можно будет обращаться без ?. Мы должны не забыть инициализировать _binding, до того как использовать
     private val binding get() = _binding!!
 
@@ -24,7 +25,7 @@ class CitiesFragment : Fragment() {
     ): View {
         _binding = FragmentCitiesBinding.inflate(inflater, container, false)
 
-        binding.textView.text = cities
+        binding.citiesTextView.text = cities
         return binding.root
     }
 }
