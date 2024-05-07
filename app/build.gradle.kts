@@ -6,6 +6,9 @@ plugins {
 android {
     namespace = "com.practicum.fragmentsexample"
     compileSdk = 34
+    viewBinding{
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.practicum.fragmentsexample"
