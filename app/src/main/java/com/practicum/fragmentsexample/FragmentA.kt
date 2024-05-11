@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.practicum.fragmentsexample.databinding.FragmentABinding
 
-class FragmentA : Fragment() {
+class FragmentA : Fragment(), SelectPage {
     private lateinit var binding: FragmentABinding
 
     override fun onCreateView(
@@ -15,13 +15,19 @@ class FragmentA : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FragmentABinding.inflate(layoutInflater).root
+        binding = FragmentABinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        childFragmentManager.beginTransaction()
-            .add(R.id.fragment_child_container, NestedFragmentA())
-            .commit()
+        binding.fragmentTitle.text = (requireActivity() as TextStorage).getText().plus(" | Parent")
+        val adapter = PagerAdapter(this)
+        binding.pager.adapter = adapter
+        binding.pager.setPageTransformer(ZoomOutPageTransformer())
+    }
+
+    override fun navigateTo(page: Int) {
+        binding.pager.currentItem = page
     }
 }

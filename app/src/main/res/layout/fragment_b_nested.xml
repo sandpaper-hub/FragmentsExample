@@ -8,6 +8,7 @@
     tools:context=".NestedFragmentB">
 
     <TextView
+        android:id="@+id/fragmentText2"
         style="@style/InfoText"
         android:text="Это Nested FragmentB!"/>
 

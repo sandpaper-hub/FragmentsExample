@@ -21,11 +21,9 @@ class NestedFragmentA : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.fragmentText1.text = (requireActivity() as TextStorage).getText().plus(" | 'A'")
         binding.button.setOnClickListener {
-            // Тут транзакция реализована через extension-функцию, а не через цепочку из методов
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_child_container, NestedFragmentB())
-                .commit()
+            (parentFragment as? SelectPage)?.navigateTo(1)
         }
     }
 }

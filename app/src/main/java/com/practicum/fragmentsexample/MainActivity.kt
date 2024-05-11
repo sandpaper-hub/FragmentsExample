@@ -1,13 +1,10 @@
 package com.practicum.fragmentsexample
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TextStorage {
+    private var someText = "Bla, bla, bla"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,5 +14,9 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.fragment_container, FragmentA())
                 .commit()
         }
+    }
+
+    override fun getText(): String {
+        return someText
     }
 }

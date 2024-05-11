@@ -30,14 +30,9 @@ class NestedFragmentB : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /**
-         * Тут также при нажатии на кнопку заменяем фрагмент из "fragment_child_container" на
-         * другой.
-         */
+        binding.fragmentText2.text = (requireActivity() as TextStorage).getText().plus(" | B")
         binding.button.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_child_container, NestedFragmentA())
-                .commit()
+            (parentFragment as? SelectPage)?.navigateTo(0)
         }
     }
 }
