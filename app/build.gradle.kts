@@ -6,6 +6,9 @@ plugins {
 android {
     namespace = "com.practicum.fragmentsexample"
     compileSdk = 34
+    viewBinding{
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.practicum.fragmentsexample"
@@ -45,5 +48,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
 }
